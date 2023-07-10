@@ -3,46 +3,46 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-  <style>
-      body {
-        background-color: lightblue;
-        text-align: center;
-      }
-      
-      .lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+  <style>      
+  :root {
+  --main-color: #ecf0f1;
+  --point-color: #555;
+  --size: 5px;
 }
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+
+.loader {
+  background-color: var(--main-color);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0; left: 0;
+  display: flex;
+  align-items: center;
+  align-content: center; 
+  justify-content: center;  
+  z-index: 100000;
 }
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
+
+.loader__element {
+  border-radius: 100%;
+  border: var(--size) solid var(--point-color);
+  margin: calc(var(--size)*2);
 }
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
+
+.loader__element:nth-child(1) {
+  animation: preloader .6s ease-in-out alternate infinite;
 }
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
+.loader__element:nth-child(2) {
+  animation: preloader .6s ease-in-out alternate .2s infinite;
 }
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+
+.loader__element:nth-child(3) {
+  animation: preloader .6s ease-in-out alternate .4s infinite;
+}
+
+@keyframes preloader {
+  100% { transform: scale(2); }
 }
 
   </style>
@@ -69,7 +69,14 @@
 
   </script>
   
-  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  
+<div class="loader">
+  <span class="loader__element"></span>
+  <span class="loader__element"></span>
+  <span class="loader__element"></span>
+</div>
+
+  <div>Espera un momento</div>
   
   
 </body>
